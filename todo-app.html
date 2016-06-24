@@ -12,8 +12,8 @@
     </div>
     <div>
       <ul>
-        <template is="dom-repeat" items="{{todos}}">
-          <li>{{item.text}} <a on-tap="_onDelete">(X)</a></li>
+        <template is="dom-repeat" items="[[todos]]">
+          <li>[[item.text]] <a on-tap="_onDelete">(X)</a></li>
         </template>
       </ul>
     </div>

@@ -47,10 +47,13 @@ const redux = require('redux');
     is: 'todo-app',
 
     properties: {
-      todos: Array,
+      todos: {
+        type: Array,
+        readonly: true
+      },
       inputText: {
         type: String,
-        readyonly: true // oneway binding
+        readonly: true
       }
     },
 
@@ -70,7 +73,7 @@ const redux = require('redux');
       this.setInputText = setInputText;
     },
 
-    _onTap: function (event) {
+    _onTap: function () {
       this.addTodo(this.inputText);
     },
 
@@ -78,9 +81,8 @@ const redux = require('redux');
       this.setInputText(event.target.value);
     },
 
-    _onDelete: function(event) {
-      const model = event.model;
-      this.removeTodo(model.index);
+    _onDelete: function (event) {
+      this.removeTodo(event.model.index);
     }
 
   });
