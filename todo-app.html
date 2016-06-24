@@ -1,0 +1,22 @@
+<link rel="import" href="bower_components/polymer/polymer.html"/>
+<dom-module id="todo-app">
+  <template>
+    <style>
+      :host input {
+        width: 150px;
+      }
+    </style>
+    <div>
+      <input placeholder="todo.." on-change="_onInput" value="[[inputText]]" />
+      <button on-tap="_onTap">add</button>
+    </div>
+    <div>
+      <ul>
+        <template is="dom-repeat" items="{{todos}}">
+          <li>{{item.text}} <a on-tap="_onDelete">(X)</a></li>
+        </template>
+      </ul>
+    </div>
+  </template>
+  <script src="dist/bundle.min.js"></script>
+</dom-module>
