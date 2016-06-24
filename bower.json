@@ -1,0 +1,25 @@
+{
+  "name": "todomvc-polymer-redux",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "@aifarfa"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "polymer",
+    "redux"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.5.0"
+  }
+}

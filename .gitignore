@@ -1,0 +1,9 @@
+node_modules/
+bower_components/
+dist/*.min.js
+*.map
+*.log
+.vscode
+.idea
+.DS_Store
+tmp
