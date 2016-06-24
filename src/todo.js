@@ -1,6 +1,6 @@
 'use strict';
 
-const reducer = function (state = {}, action = {}) {
+const reducer = function (state, action) {
   switch (action.type) {
     // do reducer stuff
     case 'SET_INPUT':
@@ -22,6 +22,7 @@ const reducer = function (state = {}, action = {}) {
       });
 
     default:
+      // console.warn('action.type not recognized, returns default state.')
       return state;
   }
 };

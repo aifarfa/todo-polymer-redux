@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -b",
     "start": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register  ./test/**/*.js"
   },
   "keywords": [
     "polymer",
@@ -17,6 +17,8 @@
   "license": "ISC",
   "devDependencies": {
     "babel-loader": "^6.2.4",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
