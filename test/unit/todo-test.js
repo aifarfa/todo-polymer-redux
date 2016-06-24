@@ -8,6 +8,7 @@ describe('todo module', () => {
   describe('reducer', () => {
 
     const currentState = {
+      inputText: '',
       todos: [{
         text: 'first',
         completed: false
@@ -33,13 +34,29 @@ describe('todo module', () => {
       expect(nextState.todos[0].text).to.equals('first');
     });
 
-    xit('toggle item completed', () => {
+    it('set inputText when dispatch "SET_INPUT"', () => {
+      const action = todo.setInputText('woow');
+      const nextState = reducer(currentState, action);
+
+      expect(nextState.inputText).to.equals('woow');
+    });
+
+    it('toggle item completed', () => {
       const action = todo.toggleTodo(1);
       const nextState = reducer(currentState, action);
 
+      expect(nextState.todos[0].completed).to.be.false;
       expect(nextState.todos[1].completed).to.be.ok;
     });
 
+    it('toggle item completed inverse', () => {
+      const action = todo.toggleTodo(0);
+      const nextState = reducer(currentState, action);
+      expect(nextState.todos[0].completed).to.be.ok;
+
+      const lastState = reducer(nextState, action);
+      expect(lastState.todos[0].completed).to.be.false;
+    });
 
   });
 });

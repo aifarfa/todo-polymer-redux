@@ -1,19 +1,21 @@
-<link rel="import" href="bower_components/polymer/polymer.html"/>
+<link rel="import" href="bower_components/polymer/polymer.html">
 <dom-module id="todo-app">
   <template>
     <style>
-      :host input {
-        width: 150px;
-      }
+    :host input.text-todo {
+      width: 150px;
+    }
     </style>
     <div>
-      <input placeholder="todo.." on-change="_onInput" value="[[inputText]]" />
+      <input class="text-todo" placeholder="todo.." on-change="_onInput" value="[[inputText]]" />
       <button on-tap="_onTap">add</button>
     </div>
     <div>
       <ul>
         <template is="dom-repeat" items="[[todos]]">
-          <li>[[item.text]] <a on-tap="_onDelete">(X)</a></li>
+          <li>
+            <input type="checkbox" checked$="{{item.completed}}" /> [[item.text]] <a on-tap="_onDelete">(X)</a>
+          </li>
         </template>
       </ul>
     </div>

@@ -16,11 +16,27 @@ const reducer = function (state, action) {
       });
 
     case 'REMOVE':
-      console.log('REMOVE', action.index)
+      console.log('REMOVE', action.index);
       return Object.assign({}, state, {
         todos: state.todos.filter((item, index) => index !== action.index)
       });
 
+    case 'TOGGLE':
+      console.log('TOGGLE', action.index);
+      const target = state.todos[action.index];
+      const newItem = Object.assign({}, target, {
+        completed: !target.completed
+      });
+      const newTodos = state.todos.map((item, index) => {
+        if (index === action.index) {
+          return newItem;
+        }
+        return item;
+      });
+
+      return Object.assign({}, state, {
+        todos: newTodos
+      });
     default:
       // console.warn('action.type not recognized, returns default state.')
       return state;
