@@ -1,47 +1,63 @@
 'use strict';
+const redux = require('redux');
 
-const reducer = function (state, action) {
+/**
+ * [description]
+ * @param  {Array} state  current todos state.
+ * @param  {Object} action given action
+ * @return {Array}        new todos state.
+ */
+const todos = (state = [], action) => {
   switch (action.type) {
-    // do reducer stuff
-    case 'SET_INPUT':
-      console.log('SET_INPUT', action.text);
-      return Object.assign({}, state, {
-        inputText: action.text
-      });
-
     case 'ADD':
       console.log('ADD', action.item);
-      return Object.assign({}, state, {
-        todos: state.todos.concat([action.item])
-      });
+      return state.concat([action.item]);
 
     case 'REMOVE':
       console.log('REMOVE', action.index);
-      return Object.assign({}, state, {
-        todos: state.todos.filter((item, index) => index !== action.index)
-      });
+      return state.filter((item, index) => index !== action.index);
 
     case 'TOGGLE':
+      // {
       console.log('TOGGLE', action.index);
-      const target = state.todos[action.index];
+      const target = state[action.index];
       const newItem = Object.assign({}, target, {
         completed: !target.completed
       });
-      const newTodos = state.todos.map((item, index) => {
+      const nextTodos = state.map((item, index) => {
         if (index === action.index) {
           return newItem;
         }
         return item;
       });
+      return nextTodos;
 
-      return Object.assign({}, state, {
-        todos: newTodos
-      });
     default:
-      // console.warn('action.type not recognized, returns default state.')
+      return state;
+  }
+}
+
+/**
+ * reduce state -> nextState
+ * @param  {String} state  =             '' current inputText
+ * @param  {Object} action {type, text}
+ * @return {String}        new inputText
+ */
+const inputText = (state = '', action) => {
+  switch (action.type) {
+    // do reducer stuff
+    case 'SET_INPUT':
+      console.log('SET_INPUT', action.text);
+      return action.text; // as next state
+    default:
       return state;
   }
 };
+
+const reducer = redux.combineReducers({
+  inputText,
+  todos
+});
 
 // action creators
 
